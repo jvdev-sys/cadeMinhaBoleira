@@ -6,8 +6,6 @@ import Colors from '../styles/Colors';
 
 const ButtonApp = ({label, isDarkTheme}) => {
 
-    
-    
     return (
         <View>
             <TouchableOpacity>
@@ -21,13 +19,13 @@ const ButtonApp = ({label, isDarkTheme}) => {
 }
 const styles = StyleSheet.create({
     smallLabelDark: {
-       
+        
         color: Colors.white,
         fontSize: 18,
         fontWeight: '400',
         borderColor: Colors.white,
         borderWidth: 1,
-        borderRadius: 20,
+        borderRadius: 10,
         padding: 5,
         paddingHorizontal: 10,
         marginVertical: 10,
@@ -38,7 +36,7 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         borderColor: Colors.deepRose,
         borderWidth: 1,
-        borderRadius: 20,
+        borderRadius: 10,
         padding: 5,
         paddingHorizontal: 10,
         marginVertical: 10,

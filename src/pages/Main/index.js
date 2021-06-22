@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Text, StatusBar, useColorScheme } from 'react-native';
+import {StatusBar, useColorScheme } from 'react-native';
 import Colors from '../../styles/Colors';
 
 import Container from '../../components/Core/Container';
@@ -18,16 +18,12 @@ const Main = () => {
                     backgroundColor={isDarkTheme ? Colors.dark : Colors.light}
             />
             <ButtonApp isDarkTheme={isDarkTheme} label='Cadastro de Boleira'/>
-            <ButtonApp isDarkTheme={isDarkTheme} label='Registrar saída de bolo' />
+            <ButtonApp isDarkTheme={isDarkTheme} label='Entregar Bolo' />
             <ButtonApp isDarkTheme={isDarkTheme} label='Receber Boleira' />
        </Container>
     );
 }
 
-const styles = StyleSheet.create({
-    
-
-})
 
 export default Main;
 
