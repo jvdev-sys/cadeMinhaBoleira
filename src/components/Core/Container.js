@@ -15,13 +15,13 @@ const Container = ({children, isDarkTheme}) => {
 
 const styles = StyleSheet.create({
     mainContainerDark: {
-        
+       flex: 1,
         backgroundColor: Colors.dark,
         alignItems: 'center',
         justifyContent: 'center',
     },
     mainContainerLight: {
-       
+       flex: 1,
         backgroundColor: Colors.light,
         alignItems: 'center',
         justifyContent: 'center',

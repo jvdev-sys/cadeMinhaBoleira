@@ -6,10 +6,7 @@ import Main from './src/pages/Main';
 const App = () => {
 
   return (
-    <View>
       <Main />
-    </View>
-      
   );
 };
 

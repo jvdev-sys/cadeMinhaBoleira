@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, StatusBar, useColorScheme } from 'react-native';
+import { StyleSheet, View, Text, StatusBar, useColorScheme } from 'react-native';
 import Colors from '../../styles/Colors';
 
 import Container from '../../components/Core/Container';
@@ -10,17 +10,24 @@ const Main = () => {
     const isDarkTheme = useColorScheme() === 'dark';
     
     return (
-       
-        <Container isDarkTheme={isDarkTheme} >
+       <Container
+        isDarkTheme={isDarkTheme}
+       >
             <StatusBar 
-                barStyle={isDarkTheme? 'light-content': 'dark-content'} 
-                backgroundColor={isDarkTheme? Colors.dark : Colors.light}
-                />
-            <ButtonApp label='Cadastro de Suportes' isDarkTheme={isDarkTheme}/>
-        </Container>
-       
-    )
+                    barStyle={isDarkTheme ? 'light-content' : 'dark-content'}
+                    backgroundColor={isDarkTheme ? Colors.dark : Colors.light}
+            />
+            <ButtonApp isDarkTheme={isDarkTheme} label='Cadastro de Boleira'/>
+            <ButtonApp isDarkTheme={isDarkTheme} label='Registrar saída de bolo' />
+            <ButtonApp isDarkTheme={isDarkTheme} label='Receber Boleira' />
+       </Container>
+    );
 }
+
+const styles = StyleSheet.create({
+    
+
+})
 
 export default Main;
 
