@@ -2,11 +2,11 @@ import React from 'react'
 import {Text, StyleSheet, View, useColorScheme} from 'react-native';
 import Colors from '../../styles/Colors';
 
-const Container = ({children, isDarkTheme, flex}) => {
+const Container = ({children, isDarkTheme, flex, justifyContent}) => {
     
     return (
         <View style={[isDarkTheme?styles.mainContainerDark:styles.mainContainerLight, 
-               {flex: flex}
+            { flex: flex, justifyContent: justifyContent }
             ]}>
             {children}
         </View>

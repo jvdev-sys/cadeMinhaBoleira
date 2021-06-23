@@ -10,6 +10,8 @@ const InputText = ({
     isMasked, 
     value,
     isEditable,
+    onFocus,
+    onBlur,
     onChangeText=()=>{}
     }) => {
     
@@ -22,6 +24,8 @@ const InputText = ({
                     placeholder={label}
                     value={value}
                     editable={isEditable}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
                     onChangeText={text => onChangeText(text)}
                 />
             :
@@ -29,12 +33,15 @@ const InputText = ({
                     type={'cel-phone'}
                     style={isDarkTheme ? styles.inputTextDark : styles.inputTextLight}
                     placeholder={label}
+                    
                     options={{
                         maskType: 'BRL',
                         withDDD: true,
                         dddMask: '(99) '
                     }}
+                    onFocus={onFocus}
                     value={value}
+                    onBlur={onBlur}
                     includeRawValueInChangeText={true}
                         onChangeText={(maskedValue, rawValue) => {
                             onChangeText(maskedValue, rawValue)
@@ -64,8 +71,9 @@ const styles = StyleSheet.create({
         marginLeft: 10,
     },
     inputTextDark: {
+        
         backgroundColor: Colors.asphalt,
-        borderRadius: 10,
+        borderRadius: 20,
         fontSize: 18,
         paddingHorizontal: 10,
         marginBottom: 20,
@@ -73,7 +81,7 @@ const styles = StyleSheet.create({
     inputTextLight: {
         color: Colors.asphalt,
         backgroundColor: Colors.creamyPeach,
-        borderRadius: 10,
+        borderRadius: 20,
         fontSize: 18,
         paddingHorizontal: 10,
         marginBottom: 20,
