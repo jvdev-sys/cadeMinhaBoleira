@@ -2,12 +2,12 @@ import React from 'react'
 import {Text, StyleSheet, View, useColorScheme} from 'react-native';
 import Colors from '../../styles/Colors';
 
-const Container = ({children, isDarkTheme}) => {
-    
-
+const Container = ({children, isDarkTheme, flex}) => {
     
     return (
-        <View style={isDarkTheme?styles.mainContainerDark:styles.mainContainerLight}>
+        <View style={[isDarkTheme?styles.mainContainerDark:styles.mainContainerLight, 
+               {flex: flex}
+            ]}>
             {children}
         </View>
     )
@@ -15,16 +15,20 @@ const Container = ({children, isDarkTheme}) => {
 
 const styles = StyleSheet.create({
     mainContainerDark: {
-       flex: 1,
+      
         backgroundColor: Colors.dark,
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: 'center',  
     },
     mainContainerLight: {
-       flex: 1,
+       
         backgroundColor: Colors.light,
         alignItems: 'center',
-        justifyContent: 'center',
+    },
+    flex0:{
+        flex: 0,
+    },
+    flex1: {
+        flex: 1,
     },
 })
 
