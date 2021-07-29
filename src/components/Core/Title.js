@@ -1,5 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native';
+import styles from '../../styles/styles';
 import Colors from '../../styles/Colors';
 
 const Title = ({label, isDarkTheme}) => {
@@ -12,19 +13,3 @@ const Title = ({label, isDarkTheme}) => {
 
 export default Title;
 
-const styles = StyleSheet.create({
-    titleView:{
-        marginTop: 20,
-        marginBottom: 20,
-    },
-    titleLabelDark:{
-        color: Colors.white,
-        fontSize: 25,
-        fontWeight: '700',
-    },
-    titleLabelLight: {
-        color: Colors.deepRose,
-        fontSize: 25,
-        fontWeight: '700',
-    },
-})

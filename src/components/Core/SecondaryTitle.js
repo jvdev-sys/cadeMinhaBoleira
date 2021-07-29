@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     },
     secondaryTitleLabelLight: {
         color: Colors.deepRose,
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: '700',
     },
 })

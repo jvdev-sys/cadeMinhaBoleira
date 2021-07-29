@@ -1,15 +1,26 @@
-import React from 'react'
-import {StatusBar, StyleSheet, useColorScheme, Image } from 'react-native';
-import Colors from '../../styles/Colors';
+import React, {useState, useCallback} from 'react'
+import { StatusBar, Image, useColorScheme, Alert } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+
+import styles from '../../styles/styles';
 import Logo from '../../assets/ivani_bolos.png'
 import Container from '../../components/Core/Container';
 import ButtonApp from '../../components/Core/ButtonApp';
 import Title from '../../components/Core/Title';
 import SecondaryTitle from '../../components/Core/SecondaryTitle';
 
-const Main = () => {
-    
-    const isDarkTheme = useColorScheme() === 'dark';
+const Main = ({navigation}) => {
+   
+    let isDarkTheme = useColorScheme() === 'dark';
+
+    useFocusEffect(
+        useCallback(()=>{
+            const setTheme = () =>{
+                console.log(isDarkTheme);
+            }
+            setTheme();
+        }, [isDarkTheme])
+    );
     
     return (
         <>
@@ -32,17 +43,18 @@ const Main = () => {
             >
                 <StatusBar
                     barStyle={isDarkTheme ? 'light-content' : 'dark-content'}
-                    backgroundColor={isDarkTheme ? Colors.dark : Colors.light}
+                    backgroundColor={'transparent'}
+                    translucent={true}
                 />
-                <ButtonApp isDarkTheme={isDarkTheme} label='Cadastro de Boleira' />
-                <ButtonApp isDarkTheme={isDarkTheme} label='Entregar Bolo' />
-                <ButtonApp isDarkTheme={isDarkTheme} label='Receber Boleira' />
+                <ButtonApp isDarkTheme={isDarkTheme} label='Cadastro de Boleira' onPress={() => navigation.navigate('NewCakeSupport')}/>
+                <ButtonApp isDarkTheme={isDarkTheme} label='Entregar Bolo' onPress={() => navigation.navigate('DeliveryCake')} />
+                <ButtonApp isDarkTheme={isDarkTheme} label='Receber Boleira' onPress={() => navigation.navigate('ReceiveCakeSupport')} />
             </Container>
             <Container
                 flex={1}
                 isDarkTheme={isDarkTheme} 
             >
-              <SecondaryTitle label='Bolos no Mundão!' isDarkTheme={isDarkTheme}/>
+              <SecondaryTitle label='Bolos no mundão!' isDarkTheme={isDarkTheme}/>
 
             </Container>
         </>
@@ -50,14 +62,7 @@ const Main = () => {
     );
 }
 
-const styles = StyleSheet.create({
-   logo: {
-        width: 200,
-        height: 200,
-        resizeMode: 'stretch',
-        marginBottom: 30,
-   },
-})
+
 
 export default Main;
 
