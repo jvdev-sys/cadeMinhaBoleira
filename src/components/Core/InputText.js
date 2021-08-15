@@ -12,7 +12,9 @@ const InputText = ({
     isEditable,
     onFocus,
     onBlur,
-    onChangeText=()=>{}
+    isOnFocus = () => { },
+    isOnBlur = () => { },
+    onChangeText = () => { },
     }) => {
     
         return (
@@ -27,6 +29,8 @@ const InputText = ({
                     onFocus={onFocus}
                     onBlur={onBlur}
                     onChangeText={text => onChangeText(text)}
+                    onFocus={isOnFocus}
+                    onBlur={isOnBlur}
                 />
             :
                 <TextInputMask
@@ -60,21 +64,21 @@ const styles = StyleSheet.create({
     },
     labelDark: {
         color: Colors.white,
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: '400',
         marginLeft: 10,
     },
     labelLight: {
         color: Colors.deepRose,
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: '400',
         marginLeft: 10,
     },
     inputTextDark: {
-        
+        color: Colors.white,
         backgroundColor: Colors.asphalt,
         borderRadius: 20,
-        fontSize: 18,
+        fontSize: 14,
         paddingHorizontal: 10,
         marginBottom: 20,
     },
@@ -82,7 +86,7 @@ const styles = StyleSheet.create({
         color: Colors.asphalt,
         backgroundColor: Colors.creamyPeach,
         borderRadius: 20,
-        fontSize: 18,
+        fontSize: 14,
         paddingHorizontal: 10,
         marginBottom: 20,
     },

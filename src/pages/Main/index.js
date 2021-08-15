@@ -1,27 +1,64 @@
-import React, {useState, useCallback} from 'react'
-import { StatusBar, Image, useColorScheme, Alert } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
+import React from 'react'
+import {
+    StatusBar,
+    useColorScheme,
+    View,
+    TouchableOpacity,
+    Text,
+    FlatList,
+    Dimensions
+} from 'react-native';
 
 import styles from '../../styles/styles';
-import Logo from '../../assets/ivani_bolos.png'
+import Logo from '../../assets/bolo.svg'
 import Container from '../../components/Core/Container';
 import ButtonApp from '../../components/Core/ButtonApp';
 import Title from '../../components/Core/Title';
 import SecondaryTitle from '../../components/Core/SecondaryTitle';
+import useEntry from '../../hooks/useEntry';
 
-const Main = ({navigation}) => {
-   
+const WIDTH = Dimensions.get('screen').width;
+const HEIGHT = Dimensions.get('screen').height;
+
+
+const Main = ({ navigation }) => {
+
     let isDarkTheme = useColorScheme() === 'dark';
+    const [, entriesFiltered,] = useEntry();
 
-    useFocusEffect(
-        useCallback(()=>{
-            const setTheme = () =>{
-                console.log(isDarkTheme);
-            }
-            setTheme();
-        }, [isDarkTheme])
+    const renderItem = ({ item }) => (
+        <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <View >
+                <Text
+                    style={isDarkTheme
+                        ? styles.tableLabelDark
+                        : styles.tableLabelLight
+                    }
+                >{item.client.name.length > 14
+                    ? item.client.name.split("").slice(0, 14).join("") + "..."
+                    : item.client.name
+                    }</Text>
+            </View>
+            <View style={{ position: 'absolute', right: (WIDTH / 4) + 20 }}>
+                <Text
+                    style={isDarkTheme
+                        ? styles.tableLabelDark
+                        : styles.tableLabelLight}
+                >{item.client.phone}</Text>
+            </View>
+            <View>
+                <Text
+                    style={isDarkTheme
+                        ? styles.tableLabelDark
+                        : styles.tableLabelLight}
+                >{item.cakeSupport.description.length > 17
+                    ? item.cakeSupport.description.split("").slice(0, 17).join("") + "..."
+                    : item.cakeSupport.description}</Text>
+            </View>
+
+        </TouchableOpacity>
     );
-    
+
     return (
         <>
             <Container
@@ -29,11 +66,7 @@ const Main = ({navigation}) => {
                 flex={0}
                 style={styles.topContainer}
             >
-                <Title label='Cadê Minha Boleira?' isDarkTheme={isDarkTheme}></Title>
-                <Image 
-                    style={styles.logo}
-                    source={Logo}
-                />
+                <Logo width="100%" height="150" />
             </Container>
 
             <Container
@@ -46,19 +79,29 @@ const Main = ({navigation}) => {
                     backgroundColor={'transparent'}
                     translucent={true}
                 />
-                <ButtonApp isDarkTheme={isDarkTheme} label='Cadastro de Boleira' onPress={() => navigation.navigate('NewCakeSupport')}/>
+                <ButtonApp isDarkTheme={isDarkTheme} label='Cadastro de Boleira' onPress={() => navigation.navigate('NewCakeSupport')} />
                 <ButtonApp isDarkTheme={isDarkTheme} label='Entregar Bolo' onPress={() => navigation.navigate('DeliveryCake')} />
                 <ButtonApp isDarkTheme={isDarkTheme} label='Receber Boleira' onPress={() => navigation.navigate('ReceiveCakeSupport')} />
             </Container>
             <Container
                 flex={1}
-                isDarkTheme={isDarkTheme} 
+                isDarkTheme={isDarkTheme}
+                justifyContent={"center"}
             >
-              <SecondaryTitle label='Bolos no mundão!' isDarkTheme={isDarkTheme}/>
-
+                {entriesFiltered && entriesFiltered.length > 0 &&
+                    <>
+                        <SecondaryTitle label='Boleiras no mundão!' isDarkTheme={isDarkTheme} />
+                        <View style={isDarkTheme ? styles.tableViewDark : styles.tableViewLight}>
+                            <FlatList
+                                data={entriesFiltered}
+                                keyExtractor={item => item.id}
+                                renderItem={renderItem}
+                            />
+                        </View>
+                    </>
+                }
             </Container>
         </>
-       
     );
 }
 

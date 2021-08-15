@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import styles from '../../styles/styles';
 import Colors from '../../styles/Colors';
 
 const SecondaryTitle = ({label, isDarkTheme}) => {
@@ -9,22 +10,6 @@ const SecondaryTitle = ({label, isDarkTheme}) => {
         </View>
     )
 }
-
 export default SecondaryTitle;
 
-const styles = StyleSheet.create({
-    secondaryTitleView:{
-        marginTop: 10,
-        marginBottom: 20,
-    },
-    secondaryTitleLabelDark:{
-        color: Colors.white,
-        fontSize: 20,
-        fontWeight: '700',
-    },
-    secondaryTitleLabelLight: {
-        color: Colors.deepRose,
-        fontSize: 20,
-        fontWeight: '700',
-    },
-})
+
