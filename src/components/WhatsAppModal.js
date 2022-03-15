@@ -1,11 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Dimensions, Platform} from 'react-native';
 
 import Modal from 'react-native-modal';
-import ExtraDimensions from 'react-native-extra-dimensions-android';
-
 import ButtonApp from './Core/ButtonApp';
 import styles from '../styles/styles';
+import ExtraDimensions from 'react-native-extra-dimensions-android';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT =
@@ -13,35 +12,36 @@ const HEIGHT =
         ? Dimensions.get('window').height
         : ExtraDimensions.getRealWindowHeight();
 
-const ModalSuccess = ({ msg, isVisible, onPress, isDarkTheme}) => {
+const WhatsAppModal = ({ msg, isVisible, onPress, onClose, isDarkTheme }) => {
 
     return (
-        <Modal
-            isVisible={isVisible}
-            animationIn='fadeIn'
+        <Modal 
+            isVisible={isVisible} 
+            animationIn='fadeIn' 
             statusBarTranslucent={true}
             deviceWidth={WIDTH}
             deviceHeight={HEIGHT}
         >
             <View style={[isDarkTheme
-                    ?styles.mainContainerDark
-                    :styles.mainContainerLight, stylesLocal.container]}>
+                ? styles.mainContainerDark
+                : styles.mainContainerLight, stylesLocal.container]}>
                 <Text style={[isDarkTheme
                     ? styles.titleLabelDark
-                    :styles.titleLabelLight, stylesLocal.msg]}
+                    : styles.titleLabelLight, stylesLocal.msg]}
                 >{msg}</Text>
                 <TouchableOpacity onPress={onPress}>
                     <View>
-                        <ButtonApp label="Fechar" onPress={onPress} isDarkTheme={isDarkTheme} ></ButtonApp>
+                        <ButtonApp label="Enviar Mensagem" onPress={onPress} isDarkTheme={isDarkTheme} ></ButtonApp>
+                        <ButtonApp label="Fechar" onPress={onClose} isDarkTheme={isDarkTheme} ></ButtonApp>
                     </View>
                 </TouchableOpacity>
             </View>
-            
+
         </Modal>
     )
 }
 
-export default ModalSuccess
+export default WhatsAppModal;
 
 const stylesLocal = StyleSheet.create({
     container: {

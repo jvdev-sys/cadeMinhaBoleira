@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { KeyboardAvoidingView, Text, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
+import ExtraDimensions from 'react-native-extra-dimensions-android';
 import uuid from 'react-native-uuid';
 import styles from '../../styles/styles';
 import InputText from './InputText';
@@ -8,7 +9,11 @@ import ButtonApp from './ButtonApp';
 import Title from './Title';
 import Container from './Container';
 
-const HEIGHT = Dimensions.get('window').height;
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT =
+    Platform.OS === 'ios'
+        ? Dimensions.get('window').height
+        : ExtraDimensions.getRealWindowHeight();
 
 const ModalClientEntry = ({
     isVisible,
@@ -105,10 +110,12 @@ const ModalClientEntry = ({
     }
 
     return (
-        <Modal 
+        <Modal
             isVisible={isVisible}
-            backdropOpacity={0.8}
+            animationIn='fadeIn'
             statusBarTranslucent={true}
+            deviceWidth={WIDTH}
+            deviceHeight={HEIGHT}
         >
             <KeyboardAvoidingView
                 behavior={'position'}

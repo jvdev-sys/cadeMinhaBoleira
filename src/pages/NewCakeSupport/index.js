@@ -161,7 +161,7 @@ const NewCakeSupport = ({navigation}) => {
                 {qrCodeMsg !== "" && <Text style={styles.smallLabelAlert}>{qrCodeMsg}</Text>}
                 <ButtonApp 
                     isDarkTheme={isDarkTheme} 
-                    label='Cadastrar QR Code' 
+                    label='Cadastrar Boleira' 
                     onPress={() => onSubmit()}
                 />
                 {
@@ -172,7 +172,7 @@ const NewCakeSupport = ({navigation}) => {
                                 ? styles.secondaryTitleLabelDark
                                 : styles.secondaryTitleLabelLight}
                         >
-                            Suportes cadastrados
+                            Boleiras cadastradas
                         </Text>
 
                         <View style={isDarkTheme ? styles.tableViewDark : styles.tableViewLight}>

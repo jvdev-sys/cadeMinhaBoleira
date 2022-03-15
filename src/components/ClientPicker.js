@@ -1,11 +1,15 @@
 import React from 'react'
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import Modal from 'react-native-modal';
+import ExtraDimensions from 'react-native-extra-dimensions-android';
 import Colors from '../styles/Colors';
 
 
 const WIDTH = Dimensions.get('window').width;
-const HEIGHT = Dimensions.get('window').height;
+const HEIGHT =
+    Platform.OS === 'ios'
+        ? Dimensions.get('window').height
+        : ExtraDimensions.getRealWindowHeight();
 
 export default ({
     data,
@@ -34,12 +38,16 @@ export default ({
 
     return (
 
+
         <Modal
             isVisible={isModalVisible}
+            animationIn='fadeIn'
             statusBarTranslucent={true}
-            animationType='fade'
-            onRequestClose={() => setIsModalVisible(false)}
+            deviceWidth={WIDTH}
+            deviceHeight={HEIGHT}
+             onRequestClose={() => setIsModalVisible(false)}
         >
+        
 
             <TouchableOpacity
                 style={styles.container}

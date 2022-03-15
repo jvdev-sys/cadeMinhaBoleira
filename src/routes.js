@@ -3,10 +3,12 @@ import { useColorScheme, Dimensions } from 'react-native';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import SplashScreen from './pages/SplashScreen';
 import Main from './pages/Main';
 import NewCakeSupport from './pages/NewCakeSupport';
 import DeliveryCake from './pages/DeliveryCake';
 import ReceiveCakeSupport from './pages/ReceiveCakeSupport';
+import BlackList from './pages/BlackList';
 import Colors from './styles/Colors';
 
 const WIDTH = Dimensions.get('window').width;
@@ -19,10 +21,18 @@ const StackScreens = () => {
 
     return (
         <Stack.Navigator
-            initialRouteName="Main"
+            initialRouteName="SplashScreen"
             
             
         >
+            <Stack.Screen
+                name="SplashScreen"
+                component={SplashScreen}
+                options={{
+                    headerShown: false,
+                }}
+            />
+
             <Stack.Screen 
                 name="Main" 
                 component={Main}
@@ -39,7 +49,7 @@ const StackScreens = () => {
                 name="NewCakeSupport" 
                 component={NewCakeSupport} 
                 options={{
-                    title: 'Cadastro de Suporte',
+                    title: 'Cadastro de Boleira',
                     headerTitleAlign: 'center',
                     headerStyle: {
                         backgroundColor: scheme? '#000': '#fff',
@@ -65,13 +75,25 @@ const StackScreens = () => {
                 name="ReceiveCakeSupport" 
                 component={ReceiveCakeSupport} 
                 options={{
-                    title: 'Receber Suporte',
+                    title: 'Receber Boleira',
                     headerTitleAlign: 'center',
                     headerStyle: {
                         backgroundColor: scheme ? '#000' : '#fff',
                     },
                     headerTintColor: scheme ? Colors.white : Colors.deepRose,
 
+                }}
+            />
+            <Stack.Screen
+                name="BlackList"
+                component={BlackList}
+                options={{
+                    title: 'Lista Negra',
+                    headerTitleAlign: 'center',
+                    headerStyle: {
+                        backgroundColor: scheme ? '#000' : '#fff',
+                    },
+                    headerTintColor: scheme ? Colors.white : Colors.deepRose,
                 }}
             />
             
